@@ -1,0 +1,15 @@
+id: docker-04-named-volume
+skill: docker
+title: Keep data in a named volume
+est_minutes: 45
+instructions: |
+  Create a named volume clover-data and mount it at /data in a container named
+  clover-vol (any long-running image, e.g. alpine with `sleep infinity`).
+  Write a file /data/hello.txt containing the word "clover". Then remove and
+  recreate the container with the same volume and confirm the file survived.
+verifier:
+  type: state_check
+  checks:
+    - volume_exists: { name: clover-data, unique: true }
+    - volume_mounted: { container: clover-vol, volume: clover-data, destination: /data }
+    - file_in_container: { container: clover-vol, path: /data/hello.txt, contains: clover }

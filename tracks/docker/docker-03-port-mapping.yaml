@@ -1,0 +1,13 @@
+id: docker-03-port-mapping
+skill: docker
+title: Expose nginx on port 8080
+est_minutes: 40
+instructions: |
+  Publish nginx's container port 80 on host port 8080 and open http://localhost:8080.
+  Work out the `-p` flag yourself; `docker port <name>` shows what you published.
+verifier:
+  type: state_check
+  checks:
+    - container_running: { image: nginx }
+    - port_published: { container_port: 80, host_port: 8080, unique: true }
+    - http_ok: { url: "http://localhost:8080" }

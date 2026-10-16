@@ -1,0 +1,12 @@
+id: docker-01-hello-run
+skill: docker
+title: Run your first container
+est_minutes: 30
+instructions: |
+  Run the hello-world image as a container named clover-hello and read its output.
+    docker run --name clover-hello hello-world
+  Leave the stopped container in place (don't use --rm), then run `clover verify`.
+verifier:
+  type: state_check
+  checks:
+    - container_exited: { name: clover-hello, image: hello-world, exit_code: 0, unique: true }

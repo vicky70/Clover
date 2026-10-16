@@ -1,0 +1,12 @@
+id: docker-02-detached-nginx
+skill: docker
+title: Run nginx in the background
+est_minutes: 40
+instructions: |
+  Start nginx detached, with the name clover-web, then inspect it with
+  `docker ps`, `docker logs clover-web` and `docker inspect clover-web`.
+    docker run -d --name clover-web nginx:alpine
+verifier:
+  type: state_check
+  checks:
+    - container_running: { name: clover-web, image: nginx, unique: true }

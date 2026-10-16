@@ -1,0 +1,14 @@
+id: docker-05-build-image
+skill: docker
+title: Build and run your own image
+est_minutes: 60
+instructions: |
+  Write a Dockerfile based on nginx:alpine that serves a page containing the
+  word "Clover". Build it as clover-app:v1 and run it as clover-app with host
+  port 8085 mapped to container port 80. Look at `docker history clover-app:v1`.
+verifier:
+  type: state_check
+  checks:
+    - image_exists: { tag: "clover-app:v1", unique: true }
+    - container_running: { name: clover-app, image: "clover-app:v1" }
+    - http_ok: { url: "http://localhost:8085", contains: Clover }

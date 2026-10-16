@@ -854,43 +854,43 @@ Conflict flags: `app/db.py` schema is shared by core and WhatsApp; sequence them
 ## Implementation Tasks
 Synthesized from this review's findings. Each task derives from a specific finding above. Run with Claude Code or Codex; checkbox as you ship.
 
-- [ ] **T1 (P1, human: ~3h / CC: ~15min)** — server — Build `decide(window, events, now)` with all outcomes and D8 valid-attempt rules
+- [x] **T1 (P1, human: ~3h / CC: ~15min)** — server — Build `decide(window, events, now)` with all outcomes and D8 valid-attempt rules
   - Surfaced by: Section 1 A3, Section 3 T1
   - Files: app/outcomes.py, tests/test_outcomes.py
   - Verify: `pytest tests/test_outcomes.py`
-- [ ] **T2 (P1, human: ~2h / CC: ~10min)** — server — `run_pass(now)` lifespan loop, D1 startup rule, single worker
+- [x] **T2 (P1, human: ~2h / CC: ~10min)** — server — `run_pass(now)` lifespan loop, D1 startup rule, single worker
   - Surfaced by: Scope Challenge S1 (D4), D1
   - Files: app/scheduler.py, app/main.py, tests/test_scheduler.py
   - Verify: `pytest tests/test_scheduler.py` (idempotent re-run, startup outage)
-- [ ] **T3 (P1, human: ~2h / CC: ~15min)** — server — Outbox with unique(window_id, kind) and retry until message id
+- [x] **T3 (P1, human: ~2h / CC: ~15min)** — server — Outbox with unique(window_id, kind) and retry until message id
   - Surfaced by: Section 1 A2 (D7)
   - Files: app/db.py, app/whatsapp.py, tests/test_outbox.py
   - Verify: `pytest tests/test_outbox.py` (5xx retry, no double enqueue)
-- [ ] **T4 (P1, human: ~4h / CC: ~30min)** — server — Signed `/wa/webhook`: handshake, HMAC on raw body, dedupe, consent/STOP/status
+- [x] **T4 (P1, human: ~4h / CC: ~30min)** — server — Signed `/wa/webhook`: handshake, HMAC on raw body, dedupe, consent/STOP/status
   - Surfaced by: Section 1 A1 (D5)
   - Files: app/whatsapp.py, app/witness.py, app/main.py, tests/test_webhook.py
   - Verify: `pytest tests/test_webhook.py`
-- [ ] **T5 (P1, human: ~3h / CC: ~20min)** — cli — `clover verify` with docker-py checks, `environment_error`, offline queue
+- [x] **T5 (P1, human: ~3h / CC: ~20min)** — cli — `clover verify` with docker-py checks, `environment_error`, offline queue
   - Surfaced by: Section 1 A3 (D8)
   - Files: clover/cli.py, clover/checks/docker.py, clover/queue.py, clover/api.py
   - Verify: `pytest tests/test_cli.py`
-- [ ] **T6 (P1, human: ~1d / CC: ~1h)** — tests — Real-Docker E2E per task docker-01..05, marked `docker`, in GitHub Actions ubuntu
+- [x] **T6 (P1, human: ~1d / CC: ~1h)** — tests — Real-Docker E2E per task docker-01..05, marked `docker`, in GitHub Actions ubuntu
   - Surfaced by: Section 3 T1 (D9)
   - Files: tests/e2e/test_docker_tasks.py, .github/workflows/test.yml
   - Verify: `pytest -m docker`
-- [ ] **T7 (P2, human: ~30min / CC: ~5min)** — server — SQLite WAL, busy_timeout, indexes
+- [x] **T7 (P2, human: ~30min / CC: ~5min)** — server — SQLite WAL, busy_timeout, indexes
   - Surfaced by: Section 4
   - Files: app/db.py
   - Verify: concurrent webhook + run_pass test passes without "database is locked"
-- [ ] **T8 (P2, human: ~30min / CC: ~5min)** — server — `clover init` gated by admin secret
+- [x] **T8 (P2, human: ~30min / CC: ~5min)** — server — `clover init` gated by admin secret
   - Surfaced by: minor R3-25
   - Files: app/auth.py, clover/cli.py
   - Verify: init without secret returns 403
-- [ ] **T9 (P2, human: ~1h / CC: ~5min)** — tracks — Write docker-01..05 specs, each with a `unique: true` check; loader rejects specs without one
+- [x] **T9 (P2, human: ~1h / CC: ~5min)** — tracks — Write docker-01..05 specs, each with a `unique: true` check; loader rejects specs without one
   - Surfaced by: Section 1 A3 (D8)
   - Files: tracks/docker/*.yaml, app/tracks.py
   - Verify: `pytest tests/test_tracks.py`
-- [ ] **T10 (P2, human: ~20min / CC: ~5min)** — server — Log the last-pass time each loop; show it in `clover admin outbox`
+- [x] **T10 (P2, human: ~20min / CC: ~5min)** — server — Log the last-pass time each loop; show it in `clover admin outbox`
   - Surfaced by: Failure modes critical gap (hung loop)
   - Files: app/scheduler.py, clover/cli.py
   - Verify: stop the loop in a test, then admin output shows a stale last-pass time

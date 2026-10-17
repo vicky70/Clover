@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klover — Clover skill tracks</title>
+<meta name="description" content="Clover helps students learn technical skills consistently: scheduled tasks, machine-verified proof, and a witness they choose.">
+<style>
+  :root { --bg: #fbfcfa; --fg: #1d2a22; --muted: #5b6b60; --accent: #2f7d4f; --card: #ffffff; --line: #e3e9e4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111814; --fg: #e6efe8; --muted: #9db0a3; --accent: #6cc58f; --card: #18211b; --line: #26332a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 56px 16px 72px; }
+  h1 { font-size: 2.2rem; line-height: 1.2; margin: 0 0 8px; }
+  h1 span { color: var(--accent); }
+  .lead { color: var(--muted); font-size: 1.15rem; margin: 0 0 40px; }
+  h2 { font-size: 1.15rem; margin: 40px 0 12px; }
+  ol { padding-left: 20px; }
+  li { margin: 8px 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  a { color: var(--accent); }
+  footer { margin-top: 56px; color: var(--muted); font-size: 0.95rem; border-top: 1px solid var(--line); padding-top: 20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>☘ <span>Klover</span></h1>
+  <p class="lead">Clover helps students learn technical skills consistently, starting with Docker.</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">How it works</h2>
+    <ol>
+      <li>The student picks fixed time windows for practice.</li>
+      <li>Each window has one task. Clover checks on the student's own laptop that the task was really done.</li>
+      <li>If a window is missed, a person the student chose, such as a parent or mentor, gets a short WhatsApp message.</li>
+    </ol>
+  </div>
+
+  <h2>Messages and consent</h2>
+  <p>Clover only messages a witness after the witness writes to Clover first to agree. A witness can reply STOP at any time to stop all messages. Messages contain only the missed task and its time window, never browsing history or private content.</p>
+
+  <h2>Contact</h2>
+  <p>Questions or requests: <a href="https://github.com/vicky70/Clover/issues">open an issue on GitHub</a>.</p>
+
+  <footer>© 2026 Klover · <a href="https://github.com/vicky70/Clover">Source on GitHub</a></footer>
+</main>
+</body>
+</html>
